@@ -15,7 +15,14 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(localStorage.getItem('token'));
 
-  const API_URL = useMemo(() => 'http://localhost:5000/api', []);
+  const API_URL = useMemo(() => {
+    if (process.env.NODE_ENV === 'production') {
+      return 'https://your-backend-api-url.com/api'; // User will need to update this later
+    }
+    return window.location.hostname === 'localhost' 
+      ? 'http://localhost:5000/api'
+      : `http://${window.location.hostname}:5000/api`;
+  }, []);
 
   useEffect(() => {
     const checkAuth = async () => {

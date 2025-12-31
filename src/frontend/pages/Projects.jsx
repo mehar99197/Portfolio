@@ -5,12 +5,14 @@ const Projects = memo(() => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const apiUrl = useMemo(() => 
-    window.location.hostname === 'localhost' 
+  const apiUrl = useMemo(() => {
+    if (process.env.NODE_ENV === 'production') {
+      return 'https://your-backend-api-url.com/api/projects'; // User will need to update this later
+    }
+    return window.location.hostname === 'localhost' 
       ? 'http://localhost:5000/api/projects'
-      : `http://${window.location.hostname}:5000/api/projects`,
-    []
-  );
+      : `http://${window.location.hostname}:5000/api/projects`;
+  }, []);
 
   useEffect(() => {
     const fetchProjects = async () => {
