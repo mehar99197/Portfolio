@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "server": "nodemon server.js",
     "server:dev": "NODE_ENV=development nodemon server.js",
-    "server:prod": "NODE_ENV=production node server.js"
+    "server:prod": "NODE_ENV=production node server.js",
+    "deploy": "vite build && cd dist && git init && git checkout -b gh-pages && git add -A && git commit -m 'Deploy' && git push -f https://github.com/mehar99197/portfolio.git gh-pages"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
