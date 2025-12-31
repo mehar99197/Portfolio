@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
 
   const API_URL = useMemo(() => {
     if (process.env.NODE_ENV === 'production') {
-      return 'https://your-backend-api-url.com/api'; // User will need to update this later
+      return import.meta.env.VITE_API_URL || 'https://your-backend-api-url.com/api'; // User will need to update this later
     }
     return window.location.hostname === 'localhost' 
       ? 'http://localhost:5000/api'

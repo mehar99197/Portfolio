@@ -58,9 +58,22 @@ This will:
 
 **Live URL**: https://mehar99197.github.io/Portfolio
 
-#### Important: Update Backend API URL
+#### Important: Configure Backend API URL
 
-After deploying your backend, you need to update the API URLs in the following files:
+You have two options to configure the backend API URL for production:
+
+**Option 1: Using Environment Variables (Recommended)**
+
+1. Create a `.env.production` file in the root directory:
+```bash
+VITE_API_URL=https://your-backend-url.com/api
+```
+
+2. The app will automatically use this URL in production builds.
+
+**Option 2: Hardcode in Source Files**
+
+Update the placeholder URL in these files:
 
 1. `src/frontend/pages/Home.jsx`
 2. `src/frontend/pages/About.jsx`
@@ -69,16 +82,31 @@ After deploying your backend, you need to update the API URLs in the following f
 
 Replace `'https://your-backend-api-url.com/api'` with your actual backend URL.
 
-For example, if your backend is deployed on Render:
+**Example with Render:**
 ```javascript
 const apiUrl = useMemo(() => {
   if (process.env.NODE_ENV === 'production') {
-    return 'https://your-app-name.onrender.com/api';
+    return import.meta.env.VITE_API_URL 
+      ? `${import.meta.env.VITE_API_URL}/auth/admin-profile`
+      : 'https://your-app-name.onrender.com/api/auth/admin-profile';
   }
-  return window.location.hostname === 'localhost' 
-    ? 'http://localhost:5000/api'
-    : `http://${window.location.hostname}:5000/api`;
+  // ... rest of code
 }, []);
+```
+
+#### Using Environment Variables in GitHub Actions
+
+To use environment variables in the automated deployment, add them as secrets in your GitHub repository:
+
+1. Go to repository Settings → Secrets and variables → Actions
+2. Add a new secret: `VITE_API_URL` with your backend URL
+3. Update the `.github/workflows/deploy.yml` to use the secret:
+
+```yaml
+- name: Build project
+  run: npm run build
+  env:
+    VITE_API_URL: ${{ secrets.VITE_API_URL }}
 ```
 
 ### Backend Deployment

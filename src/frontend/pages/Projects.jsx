@@ -7,7 +7,9 @@ const Projects = memo(() => {
 
   const apiUrl = useMemo(() => {
     if (process.env.NODE_ENV === 'production') {
-      return 'https://your-backend-api-url.com/api/projects'; // User will need to update this later
+      return import.meta.env.VITE_API_URL 
+        ? `${import.meta.env.VITE_API_URL}/projects`
+        : 'https://your-backend-api-url.com/api/projects'; // User will need to update this later
     }
     return window.location.hostname === 'localhost' 
       ? 'http://localhost:5000/api/projects'
