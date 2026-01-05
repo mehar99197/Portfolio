@@ -38,7 +38,7 @@ const PortfolioPage = () => {
 function App() {
   return (
     <AuthProvider>
-      <Router>
+      <Router basename="/Portfolio">
         <div className="min-h-screen flex flex-col">
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>
