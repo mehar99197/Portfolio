@@ -51,7 +51,7 @@ const About = memo(() => {
         <div className="max-w-4xl mx-auto mb-16">
           <div className="bg-gray-800 rounded-2xl p-6 sm:p-8 md:p-10 shadow-2xl">
             <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
-             I am a <span className="font-bold  text-green-500  ">Computer Science</span> student with a strong foundation in programming, logical thinking, and core computer science concepts. Alongside my studies, I work as a Web Developer, building responsive, scalable, and user-focused web applications using modern technologies.
+             I am a <span className="font-bold  text-green-500  ">Computer Scientist</span> with a strong foundation in programming, logical thinking, and core computer science concepts. Alongside my studies, I work as a Web Developer, building responsive, scalable, and user-focused web applications using modern technologies.
             </p>
             <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed">
              I enjoy solving problems, writing clean and maintainable code, and turning ideas into real-world digital solutions. I am continuously improving my skills in software development, algorithms, and system design to grow as a well-rounded engineer.

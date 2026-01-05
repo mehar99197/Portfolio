@@ -29,15 +29,15 @@ const Header = memo(() => {
   };
 
   return (
-    <header className='fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-sm shadow-lg px-4 sm:px-6 md:px-10 py-4'>
-      <nav className='flex text-base sm:text-lg md:text-xl font-mono items-center justify-between max-w-7xl mx-auto'>
-        <Link to="/" className='text-lg sm:text-xl md:text-2xl lg:text-3xl text-white font-bold cursor-pointer hover:text-green-400 transition-colors duration-700'>
+    <header className='fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-sm shadow-lg px-2 xs:px-4 sm:px-6 md:px-10 py-3 sm:py-4'>
+      <nav className='flex text-sm xs:text-base sm:text-lg md:text-xl font-mono items-center justify-between max-w-7xl mx-auto'>
+        <Link to="/" className='text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl text-white font-bold cursor-pointer hover:text-green-400 transition-colors duration-700'>
           Ahmad<span className='text-green-400'>Nawaz</span>
         </Link>
 
         <button 
           onClick={toggleMenu} 
-          className='md:hidden text-3xl sm:text-4xl text-green-400 z-50 hover:scale-110 transition-transform duration-300'
+          className='md:hidden text-2xl xs:text-3xl sm:text-4xl text-green-400 z-50 hover:scale-110 transition-transform duration-300'
           aria-label='Toggle menu'
         >
           {isMenuOpen ? <FaTimes /> : <FaBars />}
@@ -89,10 +89,10 @@ const Header = memo(() => {
             <li>
               <button 
                 onClick={() => scrollToSection('contact')}
-                className='font-semibold text-white bg-green-600 hover:bg-green-700 px-3 py-1 rounded-lg transition-all duration-500 flex items-center gap-2 transform hover:scale-105 shadow-lg'
+                className='font-semibold text-white bg-green-600 hover:bg-green-700 px-2 xs:px-3 py-1 rounded-lg transition-all duration-500 flex items-center gap-1 xs:gap-2 transform hover:scale-105 shadow-lg text-sm'
               >
-                <FaEnvelope className='text-lg' /> 
-                <span>Contact</span>
+                <FaEnvelope className='text-base xs:text-lg' /> 
+                <span className='hidden xs:inline'>Contact</span>
               </button>
             </li>
            
