@@ -4,12 +4,16 @@ const About = memo(() => {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const apiUrl = useMemo(() => 
-    window.location.hostname === 'localhost' 
+  const apiUrl = useMemo(() => {
+    if (process.env.NODE_ENV === 'production') {
+      return import.meta.env.VITE_API_URL 
+        ? `${import.meta.env.VITE_API_URL}/skills`
+        : 'https://your-backend-api-url.com/api/skills'; // User will need to update this later
+    }
+    return window.location.hostname === 'localhost' 
       ? 'http://localhost:5000/api/skills'
-      : `http://${window.location.hostname}:5000/api/skills`,
-    []
-  );
+      : `http://${window.location.hostname}:5000/api/skills`;
+  }, []);
 
   useEffect(() => {
     const fetchSkills = async () => {
