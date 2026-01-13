@@ -7,13 +7,33 @@ import apiRoutes from './src/backend/api/routes.js';
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// CORS configuration
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'http://192.168.1.9:5173',
+  'http://192.168.1.9:5174',
+  'https://mehar99197.github.io',
+  'http://mehar99197.github.io'
+];
+
+// Add CLIENT_URL from environment if it exists
+if (process.env.CLIENT_URL) {
+  allowedOrigins.push(process.env.CLIENT_URL);
+}
+
 app.use(cors({
-  origin: [
-    process.env.CLIENT_URL || 'http://localhost:5173',
-    'http://localhost:5174',
-    'http://192.168.1.9:5173',
-    'http://192.168.1.9:5174'
-  ],
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV === 'development') {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 app.use(express.json());

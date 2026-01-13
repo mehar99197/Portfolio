@@ -7,14 +7,9 @@ const Home = memo((props) => {
     const [adminProfile, setAdminProfile] = useState(null);
 
     const apiUrl = useMemo(() => {
-        if (process.env.NODE_ENV === 'production') {
-            return import.meta.env.VITE_API_URL 
-                ? `${import.meta.env.VITE_API_URL}/auth/admin-profile`
-                : 'https://your-backend-api-url.com/api/auth/admin-profile'; // User will need to update this later
-        }
-        return window.location.hostname === 'localhost' 
-            ? 'http://localhost:5000/api/auth/admin-profile'
-            : `http://${window.location.hostname}:5000/api/auth/admin-profile`;
+        return import.meta.env.VITE_API_URL 
+            ? `${import.meta.env.VITE_API_URL}/auth/admin-profile`
+            : 'http://localhost:5000/api/auth/admin-profile';
     }, []);
 
     useEffect(() => {
